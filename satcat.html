@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="img/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+		<title>SatCAT</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/e84.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Title Slide -->
+				<section id="title_slide" data-background-image="img/e84_blue_background.jpg">
+					<h3>SatCat: Cloud-Native Archives of Convenience for Remote Sensing Workloads</h3>
+
+					<p>Andrew Pawloski</p>
+
+					<p>May 6th, 2019</p>
+
+					<img data-src="img/satcat/esip_logo.png">
+				</section>
+
+				<section data-transition="none" data-background-image="img/satcat/base_edsc.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/satcat/edsc_rome_aoi.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/satcat/edsc_rome_tile_export.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/satcat/edsc_tile_overlap.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/satcat/edsc_tile_overlap_three.png">
+				</section>
+
+				<section id="slide2" data-background-color="#7cc042" data-background-transition="zoom">
+					<h3>Monolithic data access techniques are inefficient.</h3>
+				</section>
+				<section data-background-color="#7cc042">
+					<h3>How can users more effectively use remotely-stored datasets?</h3>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<img data-src="img/satcat/cogs_logo.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none"
+				data-background-color="#ffffff" style="color: #000000">
+					<h6 style="color: #000000">Cloud Optimized GeoTIFFs (COGs)</h6>
+					<ul>
+						<li>Regular GeoTIFFs</li>
+						<li>Tiled</li>
+						<li>Support HTTP GET Range Requests</li>
+						<li>End users download subset range of the GeoTIFF</li>
+					</ul>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<figure>
+						<img data-src="img/satcat/smiley_raster.png">
+						<figcaption>Typical Raster</figcaption>
+					</figure>
+					<small style="font-style: italic; color: grey;">Image credit: James Norton (Element 84)</small>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<figure>
+						<img data-src="img/satcat/smiley_tiled.png">
+						<figcaption>Tiled GeoTIFF</figcaption>
+					</figure>
+					<small style="font-style: italic; color: grey;">Image credit: James Norton (Element 84)</small>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<img data-src="img/satcat/zarr_logo.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none"
+				data-background-color="#ffffff" style="color: #000000">
+					<h6 style="color: #000000">Zarr</h6>
+					<ul>
+						<li>Multi-dimensional arrays saved in discrete chunks</li>
+						<li>Each chunk is a file</li>
+						<li>Clients can pull only the chunks they need</li>
+					</ul>
+				</section>
+
+				<section id="slide2" data-background-color="#7cc042" data-background-transition="zoom">
+					<h3>There are context-specific advantages to interacting with data in particular formats.</h3>
+				</section>
+				<section data-background-color="#7cc042">
+					<h3>How can we utilize existing Earth observation datasets in these cloud-native formats?</h3>
+				</section>
+
+				<section data-transition="none" data-background-image="img/satcat/satcat.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none"
+				data-background-color="#ffffff" style="color: #000000">
+					<h6 style="color: #000000">SatCat</h6>
+					<ul>
+						<li>Corpus of GOES-16 Full Disk product imagery (Level 2)</li>
+						<li>20TB of raw data</li>
+						<li>On-demand AoC creation from original netCDF</li>
+						<li>Possible with S3 (thanks NOAA!) and spot EC2 instances</li>
+					</ul>
+				</section>
+
+				<section data-transition="none" data-background-transition="none"
+				data-background-color="#ffffff" style="color: #000000">
+					<h3 style="color: #000000">Demo</h3>
+				</section>
+
+				<section id="thank_you_slide" data-background-image="img/e84_blue_background.jpg">
+					<h3>Thank you.</h3>
+					<!-- <img data-src="img/E84_horizontal_medium.png"> -->
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

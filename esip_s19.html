@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="img/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+		<title>ESIP Summer 2019</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/e84.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Title Slide -->
+				<section id="title_slide" >
+					<h3>Security and Compliance in Government Clouds</h3>
+
+					<p>Andrew Pawloski</p>
+
+					<p>July 16th, 2019</p>
+
+					<img data-src="img/esip_s19/esip_logo.png" style="max-width: 20%;">
+				</section>
+
+				<section data-transition="none">
+					<h3>Government cybersecurity is simple.</h3>
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/nist80053.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/control_groups.png">
+				</section>
+
+				<section data-transition="none">
+					<h3>NIST 800-53 Controls Guide:</h2>
+					<ul>
+						<li>Who can access the system (and how)</li>
+						<li>What events are stored and audited</li>
+						<li>How data is encrypted at rest and in transit</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/Slide0.png">
+				</section>
+
+				<section data-transition="none">
+					<h3>Conventional Deployments</h2>
+					<ul>
+						<li>Predictable hardware lifecycle</li>
+						<li>Consistent network footprint</li>
+						<li>Vertical operational needs</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<h3>Slow changes to infrastructure.</h3>
+					<h3>Rapid deployment of code.</h3>
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/Slide1.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/Slide2.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/Slide3.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/Slide4.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/Slide5.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/Slide6.png">
+				</section>
+
+				<section data-transition="none">
+					<h3>Rapid changes throughout the stack.</h3>
+				</section>
+
+				<section data-transition="none">
+					<h3>Major infrastructure changes can occur within a single development ticket.</h3>
+				</section>
+
+				<section data-transition="none">
+					<h3>Different services are secured in different ways.</h3>
+					<div style="display: flex; justify-content: space-around;">
+						<img data-src="img/esip_s19/vpc.png">
+						<img data-src="img/esip_s19/s3.png">
+						<img data-src="img/esip_s19/iam.png">
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/dow_headline.png">
+					<img data-src="img/esip_s19/dow_info.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/nga_s3.png">
+				</section>
+
+				<section data-transition="none">
+					<img data-src="img/esip_s19/accenture_headline.png">
+					<img data-src="img/esip_s19/accenture_info.png">
+				</section>
+
+				<section data-transition="none">
+					<h3>We need a security approach that maps to the speed and complexity of the cloud.</h3>
+				</section>
+
+				<section data-transition="none">
+					<h3>Core features of cloud cybersecurity</h3>
+					<ul>
+						<li>Adaptive monitoring</li>
+						<li>Well-definied verification criteria</li>
+						<li>Easy-to-invoke change processes</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<h3>Expect and support rapid changes.</h3>
+				</section>
+
+				<section data-transition="none">
+					<h3>Rapid Monitoring</h3>
+					<p>What questions do I want to ask at a given time?</p>
+				</section>
+
+				<section data-transition="none">
+					<h3>Rapid Monitoring</h3>
+					<div style="display: flex; justify-content: space-around;">
+						<img data-src="img/esip_s19/gaurd_duty.png">
+						<img data-src="img/esip_s19/sechub.png">
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h3>Verification Criteria</h3>
+					<p>How can I certify that this system is secure?</p>
+				</section>
+
+				<section data-transition="none">
+					<h3>Verification Criteria</h3>
+					<img data-src="img/esip_s19/config.png">
+				</section>
+
+				<section data-transition="none">
+					<h3>Change Management</h3>
+					<p>How do I support new features, services, and patterns?</p>
+				</section>
+
+				<section data-transition="none">
+					<h3>Change Management</h3>
+					<img data-src="img/esip_s19/aws_features.jpg">
+				</section>
+
+				<section data-transition="none">
+					<h3>Work in the cloud isn't slowing down. It's accelerating.</h3>
+				</section>
+
+				<section data-transition="none">
+					<h3>We need to update our compliance methodologies to support it.</h3>
+				</section>
+
+				<section id="thank_you_slide" data-transition="none">
+					<h3>Thank you.</h3>
+					<p>Andrew Pawloski</p>
+					<p>andrew@element84.com</p>
+					<a>https://apawl.com/talks/esip_s19.html</a>
+					<img data-src="img/E84_horizontal_medium.png">
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
