@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="img/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+		<title>SE TIM 19</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/e84.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Title Slide -->
+				<section id="title_slide" >
+					<h3>Community Tools for Analysis of NASA Earth Observation System Data in the Cloud</h3>
+					<img class="small" data-src="img/pangeo/pangeo.png">
+
+					<p>EOSDIS SE TIM 2019</p>
+
+					<div>
+						<small>Andrew Pawlosk andrew@element84.com</small>
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h2>Talk Agenda</h2>
+					<ul>
+						<li>Pangeo 101</li>
+						<li>Jupyter + Xarray + Dask</li>
+						<li>STAC + Intake</li>
+						<li>Lessons Learned</li>
+					</ul>
+				</section>
+
+				<!-- Section 1: Pangeo 101 -->
+
+				<section data-transition="none">
+					<h2>What is Pangeo?</h2>
+					<ul>
+						<li><span style="font-style: italic;">Not</span> a software distro, package, or library</li>
+						<li>Community of data users and software developers</li>
+						<li>Frequently used packages (Pangeo "stack")</li>
+						<li>Curated set of tools, architectures, and methodologies</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<img src="img/pangeo/python-data-stack.png"/>
+					<small>Image Source: Jake VanderPlas, "The State of the Stack," SciPy Keynote (SciPy 2017).</small>
+				</section>
+
+				<section data-transition="none">
+					<img src="img/pangeo/pangeo_software.png"/>
+					<small>Image Source: Theo McCaie, UK Met Office, ESA Φ-week Event.</small>
+				</section>
+
+				<section data-transition="none">
+					<div>
+						<h3>Goal:</h3>
+						<p>Foster collaboration around open source scientific python ecosystem for ocean / atmosphere / climate science</p>
+					</div>
+					<div class="fragment">
+						<h3>Goal:</h3>
+						<p>Build out stack with domain specific packages (e.g. thermodynamics, regridding, vector calculus, etc)</p>
+					</div>
+					<div class="fragment">
+						<h3>Goal:</h3>
+						<p>Scale to handle many-PB data missions (e.g. SWOT, NISAR)</p>
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h4>EOSDIS Data Ingest Rates</h4>
+					<img src="img/pangeo/nasa_data_ingest_rates.jpg"/>
+					<small>Image Source: https://earthdata.nasa.gov/about/cloud-evolution</small>
+				</section>
+
+				<!-- Section 2: Jupyter + Xarray + Dask -->
+
+				<section data-transition="none">
+					<img src="img/pangeo/pangeo_flow.png"/>
+					<small>Image Source: Pangeo Technical Architecture (https://pangeo.io/architecture.html)</small>
+				</section>
+
+				<section data-transition="none">
+					<ul>
+						<li>No source data downloaded to workstation</li>
+						<li>Well suited for cloud-native data stores/formats (e.g. S3, GCS and COGs, Zarr)</li>
+						<li>Notebooks can be persisted, shared</li>
+						<li>Compute is ephemeral</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<h2>Xarray</h2>
+					<img src="img/pangeo/xarray_model.png"/>
+					<a>http://xarray.pydata.org/en/stable/api.html</a>
+				</section>
+
+				<section data-transition="none">
+					<h2>Xarray</h2>
+					<img src="img/pangeo/xarray_dataset.png"/>
+				</section>
+
+				<section data-background-iframe="http://xarray.pydata.org/en/stable/api.html#indexing" data-background-interactive>
+				</section>
+
+				<section data-transition="none">
+					<h2>Dask</h2>
+					<img src="img/pangeo/dask-schedulers.png"/>
+					<small>Image Source: Multidimensional Arrays, Geohackweek 2016</small>
+				</section>
+
+				<section data-transition="none">
+					<h2>Dask</h2>
+					<img src="img/pangeo/dask_graph.gif"/>
+					<small>Image Source: Multidimensional Arrays, Geohackweek 2016</small>
+				</section>
+
+				<section data-transition="none">
+					<img src="img/pangeo/jhub_example.png"/>
+					<small>Image Source: Scott Henderson (University of Washington)</small>
+				</section>
+
+				<section data-transition="none">
+					<h2>Jupyter is great for sharing code and coupling dependencies.</h2>
+				</section>
+
+				<section data-transition="none">
+					<h2>To be truly reproducible artifacts, notebooks must also share data.</h2>
+				</section>
+
+				<section data-transition="none">
+					<h2>Challenges remain for data access</h2>
+					<ul>
+						<li>Notebooks often have hardcoded, brittle download mechanisms</li>
+						<li>Data isn't always well-described</li>
+						<li>Can involve repetitive boilerplate code</li>
+					</ul>
+				</section>
+
+				<!-- Section 3: Intake + STAC (+ CMR) -->
+
+				<section>
+					<div style="display: flex; justify-content: space-around;">
+						<img class="medium" src="img/se_tim19/intake_logo.png">
+						<img class="medium" src="img/se_tim19/stac_logo.png">
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h2>Intake</h2>
+					<ul>
+						<li><a>https://github.com/intake/intake</a></li>
+						<li>Abstracts data access mechanisms</li>
+						<li>Opens data directly as python objects</li>
+						<li>Extensible into different drivers</li>
+						<li>Couple data like you would dependencies</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<h2>STAC</h2>
+					<ul>
+						<li><a>https://stacspec.org</a></li>
+						<li>SpatioTemporal Asset Catalog</li>
+						<li>Describes information about the Earth in a certain space and time</li>
+						<li>Describes Items, Catalogs, and Collections</li>
+						<li>Defines a RESTful API</li>
+						<li>Highly extensible</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<h2>Intake-Stac</h2>
+					<ul>
+						<li><a>https://github.com/pangeo-data/intake-stac</a></li>
+						<li>Imports STAC-described data directly into Jupyter kernel</li>
+						<li>Opens as ready-to-use Xarray object(s)</li>
+						<li>Will integrate with CMR</li>
+					</ul>
+				</section>
+
+				<!-- Section 4: Lessons Learned -->
+
+				<section>
+					<h2>Lessons Learned</h2>
+				</section>
+
+				<section data-transition="none">
+					<h2>Lessons Learned: Data Access</h2>
+					<ul>
+						<li>Hitting S3 directly was by far the easiest way to operate</li>
+						<li>Best performance when HTTP Range Header supported (e.g. Zarr, COGs)</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<h2>Lessons Learned: Kubernetes on AWS</h2>
+					<ul>
+						<li>EKS SDK wasn't a great choice out of the box</li>
+						<li>Ultimately used eksctl for operations (autoscaling)</li>
+						<li>Potential for fine-grained costs controls, but not there yet</li>
+					</ul>
+				</section>
+
+				<section data-transition="none">
+					<h2>Further Resources</h2>
+					<ul>
+						<li>Website: <a>http://pangeo.io/</a></li>
+						<li>Github: <a>https://github.com/pangeo-data</a></li>
+						<li>Blog: <a>https://medium.com/pangeo</a></li>
+						<li>Gitter: <a>https://gitter.im/pangeo-data</a></li>
+					</ul>
+				</section>
+
+
+				<section id="thank_you_slide">
+					<h3>Thank you.</h3>
+					<a>https://apawl.com/talks/se_tim19.html</a>
+				</section>
+
+				<section id="thank_you_slide">
+					<p>Anthony Arendt (arendta@uw.edu)</p>
+					<p>Rob Fatland (rob5@uw.edu)</p>
+					<p>Joe Hamman (jhamman@ucar.edu)</p>
+					<p>Matt Hanson (mhanson@element84.com)</p>
+					<p>Scott Henderson (scottyh@uw.edu)</p>
+					<p>Dan Pilone (dan@element84.com)</p>
+					<p>Andrew Pawloski (andrew@element84.com)</p>
+					<p>Amanda Tan (amandach@uw.edu)</p>
+				</section>
+
+
+				<section id="thank_you_slide" data-background-image="img/e84_blue_background.jpg">
+					<h3>Backup Slides</h3>
+				</section>
+
+				<!-- BACKUP SLIDES -->
+
+				<section data-transition="none">
+					<h2>Using Your Deployment: Dask</h2>
+					<div class="fragment">
+						<pre><code class="hljs" data-trim data-line-numbers="1,4-6">
+from dask_jobqueue import PBSCluster
+from dask.distributed import Client
+
+cluster = PBSCluster(cores=36,
+										 memory="108GB")
+cluster.scale(10)
+client = Client(cluster)
+						</code></pre>
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h2>Using Your Deployment: Dask</h2>
+					<div>
+						<pre><code class="hljs" data-trim data-line-numbers="1,4-6">
+from dask_kubernetes import KubeCluster
+from dask.distributed import Client
+
+cluster = KubeCluster(n_workers=10)
+cluster.scale(10)
+
+client = Client(cluster)
+						</code></pre>
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h2>Cloud-Native Data Formats</h2>
+					<div class="fragment">
+						<figure>
+							<img data-src="img/satcat/smiley_raster.png">
+							<figcaption>Linear Reads</figcaption>
+						</figure>
+						<p class="cite">Image Source: James Norton (Element 84)</p>
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h2>Cloud-Native Data Formats</h2>
+					<div>
+						<figure>
+							<img data-src="img/satcat/smiley_tiled.png">
+							<figcaption>Tiled Reads</figcaption>
+						</figure>
+						<p class="cite">Image Source: James Norton (Element 84)</p>
+					</div>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<img data-src="img/satcat/cogs_logo.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none"
+				data-background-color="#ffffff" style="color: #000000">
+					<h6 style="color: #000000">Cloud Optimized GeoTIFFs (COGs)</h6>
+					<ul>
+						<li>Regular GeoTIFFs</li>
+						<li>Tiled</li>
+						<li>Support HTTP GET Range Requests</li>
+						<li>End users download subset range of the GeoTIFF</li>
+					</ul>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<figure>
+						<img data-src="img/satcat/smiley_raster.png">
+						<figcaption>Typical Raster</figcaption>
+					</figure>
+					<small style="font-style: italic; color: grey;">Image credit: James Norton (Element 84)</small>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<figure>
+						<img data-src="img/satcat/smiley_tiled.png">
+						<figcaption>Tiled GeoTIFF</figcaption>
+					</figure>
+					<small style="font-style: italic; color: grey;">Image credit: James Norton (Element 84)</small>
+				</section>
+
+				<section data-transition="none" data-background-transition="none" data-background-image="img/e84_blue_background.jpg">
+					<img data-src="img/satcat/zarr_logo.png">
+				</section>
+
+				<section data-transition="none" data-background-transition="none"
+				data-background-color="#ffffff" style="color: #000000">
+					<h6 style="color: #000000">Zarr</h6>
+					<ul>
+						<li>Multi-dimensional arrays saved in discrete chunks</li>
+						<li>Each chunk is a file</li>
+						<li>Clients can pull only the chunks they need</li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
