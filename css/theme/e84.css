@@ -233,6 +233,16 @@ body {
   border: 0;
   box-shadow: none; }
 
+.reveal section img.small {
+  border: 0;
+  box-shadow: none;
+  max-width: 25%; }
+
+.reveal section img.medium {
+  border: 0;
+  box-shadow: none;
+  max-width: 40%; }
+
 .reveal a img {
   -webkit-transition: all .15s linear;
   -moz-transition: all .15s linear;
