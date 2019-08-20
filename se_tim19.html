@@ -52,7 +52,7 @@
 					<ul>
 						<li>Pangeo 101</li>
 						<li>Jupyter + Xarray + Dask</li>
-						<li>STAC + Intake</li>
+						<li>STAC + Intake + EOSDIS</li>
 						<li>Lessons Learned</li>
 					</ul>
 				</section>
@@ -202,9 +202,121 @@
 						<li><a>https://github.com/pangeo-data/intake-stac</a></li>
 						<li>Imports STAC-described data directly into Jupyter kernel</li>
 						<li>Opens as ready-to-use Xarray object(s)</li>
-						<li>Will integrate with CMR</li>
 					</ul>
 				</section>
+
+				<section data-transition="none">
+					<pre><code data-trim data-noscope>
+# converting to intake catalog will enable intake tools such as gui browser
+<mark>cat = intake.StacCatalog('landsat8-aws.json')</mark>
+
+# or leverage existing tools such as sat-api/sat-search
+cat = intake.StacSearch(collection='landsat8', bbox=[], datetime='2017/2019')
+cat.filter(bands=['red','green','nir'], cloudcover=20)
+
+# load as xarray dataset:
+ds = cat.to_dask()
+
+# need to share STAC catalogs with colleagues / reproduce work later
+cat.to_file('my-catalog.json')
+					</code></pre>
+				</section>
+
+				<section data-transition="none">
+					<pre><code data-trim data-noscope>
+# converting to intake catalog will enable intake tools such as gui browser
+cat = intake.StacCatalog('landsat8-aws.json')
+
+# or leverage existing tools such as sat-api/sat-search
+<mark>cat = intake.StacSearch(collection='landsat8', bbox=[], datetime='2017/2019')</mark>
+<mark>cat.filter(bands=['red','green','nir'], cloudcover=20)</mark>
+
+# load as xarray dataset:
+ds = cat.to_dask()
+
+# need to share STAC catalogs with colleagues / reproduce work later
+cat.to_file('my-catalog.json')
+					</code></pre>
+				</section>
+
+				<section data-transition="none">
+					<pre><code data-trim data-noscope>
+# converting to intake catalog will enable intake tools such as gui browser
+cat = intake.StacCatalog('landsat8-aws.json')
+
+# or leverage existing tools such as sat-api/sat-search
+cat = intake.StacSearch(collection='landsat8', bbox=[], datetime='2017/2019')
+cat.filter(bands=['red','green','nir'], cloudcover=20)
+
+# load as xarray dataset:
+<mark>ds = cat.to_dask()</mark>
+
+# need to share STAC catalogs with colleagues / reproduce work later
+cat.to_file('my-catalog.json')
+					</code></pre>
+				</section>
+
+				<section data-transition="none">
+					<pre><code data-trim data-noscope>
+# converting to intake catalog will enable intake tools such as gui browser
+cat = intake.StacCatalog('landsat8-aws.json')
+
+# or leverage existing tools such as sat-api/sat-search
+cat = intake.StacSearch(collection='landsat8', bbox=[], datetime='2017/2019')
+cat.filter(bands=['red','green','nir'], cloudcover=20)
+
+# load as xarray dataset:
+ds = cat.to_dask()
+
+# need to share STAC catalogs with colleagues / reproduce work later
+<mark>cat.to_file('my-catalog.json')</mark>
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Pangeo, Intake, STAC, and EOSDIS</h3>
+					<ul>
+						<li>CMR will support STAC exports</li>
+						<li>NSIDC STAC pilot effort</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>EOSDIS data can be searched, accessed, and injected directly into Jupyter environments.</h3>
+					<h3 class="fragment">Science can be bundled, shared, and reproduced across the Pangeo ecosystem and beyond.</h3>
+				</section>
+
+
+				<section id="thank_you_slide">
+					<h3>Thank you.</h3>
+					<a>https://apawl.com/talks/se_tim19.html</a>
+				</section>
+
+				<section data-transition="none">
+					<h2>Further Resources</h2>
+					<ul>
+						<li>Website: <a>http://pangeo.io/</a></li>
+						<li>Github: <a>https://github.com/pangeo-data</a></li>
+						<li>Blog: <a>https://medium.com/pangeo</a></li>
+						<li>Gitter: <a>https://gitter.im/pangeo-data</a></li>
+					</ul>
+				</section>
+
+				<section id="thank_you_slide">
+					<p>Anthony Arendt (arendta@uw.edu)</p>
+					<p>Rob Fatland (rob5@uw.edu)</p>
+					<p>Joe Hamman (jhamman@ucar.edu)</p>
+					<p>Matt Hanson (mhanson@element84.com)</p>
+					<p>Scott Henderson (scottyh@uw.edu)</p>
+					<p>Dan Pilone (dan@element84.com)</p>
+					<p>Andrew Pawloski (andrew@element84.com)</p>
+					<p>Amanda Tan (amandach@uw.edu)</p>
+				</section>
+
+				<section id="thank_you_slide" data-background-image="img/e84_blue_background.jpg">
+					<h3>Backup Slides</h3>
+				</section>
+
 
 				<!-- Section 4: Lessons Learned -->
 
@@ -223,43 +335,13 @@
 				<section data-transition="none">
 					<h2>Lessons Learned: Kubernetes on AWS</h2>
 					<ul>
-						<li>EKS SDK wasn't a great choice out of the box</li>
+						<li>EKS is great, but SDK wasn't the right choice out of the box</li>
 						<li>Ultimately used eksctl for operations (autoscaling)</li>
 						<li>Potential for fine-grained costs controls, but not there yet</li>
 					</ul>
 				</section>
 
-				<section data-transition="none">
-					<h2>Further Resources</h2>
-					<ul>
-						<li>Website: <a>http://pangeo.io/</a></li>
-						<li>Github: <a>https://github.com/pangeo-data</a></li>
-						<li>Blog: <a>https://medium.com/pangeo</a></li>
-						<li>Gitter: <a>https://gitter.im/pangeo-data</a></li>
-					</ul>
-				</section>
 
-
-				<section id="thank_you_slide">
-					<h3>Thank you.</h3>
-					<a>https://apawl.com/talks/se_tim19.html</a>
-				</section>
-
-				<section id="thank_you_slide">
-					<p>Anthony Arendt (arendta@uw.edu)</p>
-					<p>Rob Fatland (rob5@uw.edu)</p>
-					<p>Joe Hamman (jhamman@ucar.edu)</p>
-					<p>Matt Hanson (mhanson@element84.com)</p>
-					<p>Scott Henderson (scottyh@uw.edu)</p>
-					<p>Dan Pilone (dan@element84.com)</p>
-					<p>Andrew Pawloski (andrew@element84.com)</p>
-					<p>Amanda Tan (amandach@uw.edu)</p>
-				</section>
-
-
-				<section id="thank_you_slide" data-background-image="img/e84_blue_background.jpg">
-					<h3>Backup Slides</h3>
-				</section>
 
 				<!-- BACKUP SLIDES -->
 
